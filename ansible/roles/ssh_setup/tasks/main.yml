@@ -1,0 +1,13 @@
+---
+
+- name: Ensure {{ remote_user }} account is in the wheel group.
+  user:
+    name: "{{ remote_user }}"
+    groups: wheel
+
+- name: Allow other users to login to the {{ remote_user }} account.
+  authorized_key:
+    user: "{{ remote_user }}"
+    key: "{{ ssh_users|map(attribute='public_ssh_key')|join('\n') }}"
+
+...

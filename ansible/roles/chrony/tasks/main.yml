@@ -1,0 +1,8 @@
+---
+
+- name: Install chrony.
+  yum:
+    name: chrony
+    state: present
+
+...
