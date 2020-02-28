@@ -15,5 +15,8 @@
     - role: chrony
       tags:
         - chrony
+    - role: fail2ban
+      tags:
+        - fail2ban
 
 ...

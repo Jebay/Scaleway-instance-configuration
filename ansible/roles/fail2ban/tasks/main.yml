@@ -1,0 +1,20 @@
+---
+- name: Install fail2ban for systemd.
+  yum:
+    name: fail2ban-systemd
+    state: present
+
+- name: Copy jail.local file on /etc/fail2ban/jail.local.
+  copy:
+    src: jail.local
+    dest: /etc/fail2ban/jail.local
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart fail2ban
+
+- name: Start and enable fail2ban service.
+  service:
+    name: fail2ban
+    state: started
+    enabled: yes

@@ -5,14 +5,4 @@
     name: epel-release
     state: present
 
-- name: Disable SELinux.
-  selinux:
-    state: disabled
-
-- name: Disable firewalld.
-  service:
-    name: firewalld
-    state: stopped
-    enabled: no
-
 ...

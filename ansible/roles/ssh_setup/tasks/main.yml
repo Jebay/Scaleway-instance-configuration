@@ -1,5 +1,10 @@
 ---
 
+- name: Install libselinux-python package.
+  yum:
+    name: libselinux-python
+    state: present
+
 - name: Ensure {{ remote_user }} account is in the wheel group.
   user:
     name: "{{ remote_user }}"
