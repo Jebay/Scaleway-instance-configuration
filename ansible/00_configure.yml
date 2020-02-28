@@ -1,0 +1,19 @@
+---
+
+- hosts: tag_stack_infra
+  become: True
+  roles:
+    - role: ssh_setup
+      tags:
+        - ssh_setup
+    - role: base_role
+      tags:
+        - base_role
+    - role: sudoers
+      tags:
+        - sudoers
+    - role: chrony
+      tags:
+        - chrony
+
+...
