@@ -1,0 +1,9 @@
+---
+
+ssh_users:
+  - name: joje
+    public_ssh_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDWM3pdAXgac4Y5hmkqwCLmC7ZgCROZztKlwOtvANdFUFgZuJ9kOFijtbO0qraovXJxQcD192AqO1OjmY6KaMK+fiNNAqj880LH9Bf3JdAowXVyCjJKga0C48FPBAsDWxJCCmKIHMEEkU8LegYrrS1cj7bsI7bapGDZnySKO5PFY1YNR0VBfiL9R6TDsG3nKcv5pLjAYyxyVmjsIP/GkwQjgX2J3jUuN+8U/gMxCtghu64tWMmfMzn05sBhyZXVpFxryLcgCs0bGq/55ImZz6dyqKm7csAQ6yH1J/m/LQLvMrni2oYX5gdARokYN8pYxHncJBG+ADiMyILY3c/fe/Fx
+
+remote_user: eduloc
+
+...
