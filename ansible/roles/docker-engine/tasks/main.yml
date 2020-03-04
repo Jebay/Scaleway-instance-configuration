@@ -20,9 +20,9 @@
     state: started
     enabled: yes
 
-- name: Adding user factory in docker group.
+- name: Adding user {{ remote_user }} in docker group.
   user:
-    name: factory
+    name: "{{ remote_user }}"
     groups: docker
     append: yes
 #  notify: Restart Docker  # do not restart docker since it means to stop rancher cluster :

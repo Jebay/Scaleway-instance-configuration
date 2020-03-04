@@ -21,5 +21,8 @@
     - role: docker-engine
       tags:
         - docker-engine
+    - role: kubectl
+      tags:
+        - kubectl
 
 ...

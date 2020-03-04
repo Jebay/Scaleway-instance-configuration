@@ -1,0 +1,11 @@
+---
+- name: Add kubectl yum repository
+  template:
+    src: kubernetes.repo.j2
+    dest: /etc/yum.repos.d/kubernetes.repo
+    mode: 0644
+
+- name: Install kubectl
+  yum:
+    name: kubectl
+    state: installed

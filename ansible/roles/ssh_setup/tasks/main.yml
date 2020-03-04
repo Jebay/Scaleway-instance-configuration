@@ -9,6 +9,7 @@
   user:
     name: "{{ remote_user }}"
     groups: wheel
+    append: yes
 
 - name: Allow other users to login to the {{ remote_user }} account.
   authorized_key:
