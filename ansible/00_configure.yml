@@ -18,5 +18,8 @@
     - role: fail2ban
       tags:
         - fail2ban
+    - role: docker-engine
+      tags:
+        - docker-engine
 
 ...

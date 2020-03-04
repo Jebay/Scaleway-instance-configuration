@@ -1,0 +1,31 @@
+---
+
+- name: Add Docker CE repo for CentOS 7.
+  yum_repository:
+    name: docker-ce-stable
+    description: Docker CE Stable
+    baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
+    gpgcheck: yes
+    gpgkey: https://download.docker.com/linux/centos/gpg
+    enabled: yes
+
+- name: Install Docker CE.
+  yum:
+    name: docker-ce-{{ docker_version }}
+  notify: Restart Docker
+
+- name: Enable and start Docker service.
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: Adding user factory in docker group.
+  user:
+    name: factory
+    groups: docker
+    append: yes
+#  notify: Restart Docker  # do not restart docker since it means to stop rancher cluster :
+# rancher override systematically groups for factory user, so this task is always mark as changed
+# As rancher run in docker containers, restart docker engine on node means stopping the cluster : not
+# really good idea
