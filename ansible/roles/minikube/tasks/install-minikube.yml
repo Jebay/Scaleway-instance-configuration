@@ -1,0 +1,12 @@
+---
+
+- name: Ensure minikube in {{ minikube_version }} version is installed.
+  command:  curl -Lo minikube https://storage.googleapis.com/minikube/releases/{{ minikube_version }}/minikube-linux-amd64
+
+- name: Ensure minikube is executable.
+  command: chmod +x minikube
+
+- name: Move minikube binary.
+  command: sudo mv minikube /usr/local/bin
+
+...

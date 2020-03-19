@@ -25,4 +25,8 @@
       tags:
         - kubectl
 
+    - role: minikube
+      tags:
+        - minikube
+
 ...

@@ -1,0 +1,12 @@
+---
+
+- name: Check if minikube is installed.
+  stat:
+    path: /usr/local/bin/minikube
+  register: result
+
+- name: Install minikube.
+  import_tasks: install-minikube.yml
+  when: result.stat.exists | bool == false
+
+...
