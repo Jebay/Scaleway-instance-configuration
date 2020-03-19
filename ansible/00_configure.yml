@@ -1,6 +1,12 @@
 ---
 
-- hosts: tag_stack_infra
+- hosts: localhost
+  roles:
+    - role: scaleway-instance
+      tags:
+        - scaleway-instance
+
+- hosts: test
   become: True
   roles:
     - role: ssh_setup
