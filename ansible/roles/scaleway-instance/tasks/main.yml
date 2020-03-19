@@ -17,6 +17,6 @@
     commercial_type: DEV1-S
     public_ip: dynamic
     tags: ["k3s"]
-    #wait: true
+    wait: true
 
 ...
