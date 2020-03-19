@@ -1,12 +1,6 @@
 ---
 
-- hosts: localhost
-  roles:
-    - role: scaleway-instance
-      tags:
-        - scaleway-instance
-
-- hosts: test
+- hosts: k3s
   become: True
   roles:
     - role: ssh_setup

@@ -1,0 +1,9 @@
+---
+
+- hosts: localhost
+  roles:
+    - role: scaleway-instance
+      tags:
+        - scaleway-instance
+
+...
