@@ -7,6 +7,6 @@
 
 - name: Install minikube.
   import_tasks: install-minikube.yml
-  when: result.stat.exists | bool == false
+  when: not result.stat.exists
 
 ...

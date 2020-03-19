@@ -1,12 +1,21 @@
 ---
 
 - name: Ensure minikube in {{ minikube_version }} version is installed.
-  command:  curl -Lo minikube https://storage.googleapis.com/minikube/releases/{{ minikube_version }}/minikube-linux-amd64
+  get_url:
+    url: https://storage.googleapis.com/minikube/releases/{{ minikube_version }}/minikube-linux-amd64
+    dest: ./minikube
+  register: download_result
 
 - name: Ensure minikube is executable.
-  command: chmod +x minikube
+  file:
+    path: ./minikube
+    owner: root
+    group: root
+    mode: '0755'
+  when: download_result.status_code == 200
 
 - name: Move minikube binary.
   command: sudo mv minikube /usr/local/bin
+  when: download_result.status_code == 200
 
 ...
