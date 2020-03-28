@@ -4,13 +4,15 @@ python: 3.7.4
 
 before_install:
 - sudo apt-get update -qq
-- openssl aes-256-cbc -K $encrypted_1a9d6c8ad656_key -iv $encrypted_1a9d6c8ad656_iv -in ansible/.secret.enc -out ansible/.secret -d
+- openssl aes-256-cbc -K $encrypted_1a9d6c8ad656_key -iv $encrypted_1a9d6c8ad656_iv -in .secret.enc -out .secret -d
+- openssl aes-256-cbc -K $encrypted_822ae74007ee_key -iv $encrypted_822ae74007ee_iv -in scaleway_token.enc -out scaleway_token -d
+- source scaleway_token
 
 install:
 - pip install ansible
 - printf '[defaults] roles_path = ../' > ansible.cfg
 
 script:
-- cd ansible
+- ansible-playbook -v -i inventories/scaleway.yml 00_scaleway.yml --syntax-check
 - ansible-playbook -v -i inventories/scaleway.yml 10_configure.yml --syntax-check
 ...
