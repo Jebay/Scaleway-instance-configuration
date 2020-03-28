@@ -1,0 +1,22 @@
+---
+
+- name: Gather Scaleway images infos.
+  scaleway_image_info:
+    region: par1
+
+- name: Gather Scaleway organizations facts
+  scaleway_organization_info:
+
+- name: Create an instance.
+  scaleway_compute:
+    name: minikube-environment
+    state: running
+    image: 2e1353f3-02f7-441f-ab68-7218b874e341
+    organization: "{{ scaleway_organization_id }}"
+    region: par1
+    commercial_type: DEV1-S
+    public_ip: dynamic
+    tags: ["k3s"]
+    wait: true
+
+...

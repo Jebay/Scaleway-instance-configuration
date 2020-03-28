@@ -1,0 +1,9 @@
+---
+
+- hosts: localhost
+  roles:
+    - role: scaleway-instance-destroy
+      tags:
+        - scaleway-instance-destroy
+
+...
