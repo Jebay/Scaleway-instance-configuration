@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/Jebay/Instance-Configuration.svg?branch=master)](https://travis-ci.com/Jebay/Instance-Configuration)
+
 # Instance-Configuration
 Script de configuration de mes instances Cloud Scaleway
 
