@@ -13,6 +13,7 @@ install:
 - printf '[defaults] roles_path = ../' > ansible.cfg
 
 script:
-- ansible-playbook -v -i inventories/scaleway.yml 00_scaleway.yml --syntax-check
+- ansible-playbook -v -i inventories/scaleway.yml 00_scaleway_destroy.yml --syntax-check
+- ansible-playbook -v -i inventories/scaleway.yml 00_scaleway_setup.yml --syntax-check
 - ansible-playbook -v -i inventories/scaleway.yml 10_configure.yml --syntax-check
 ...
