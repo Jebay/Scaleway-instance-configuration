@@ -1,17 +1,22 @@
 ---
 
 - hosts: k3s
+  remote_user: root
   become: True
   roles:
     - role: ssh_setup
       tags:
         - ssh_setup
-    - role: base_role
-      tags:
-        - base_role
     - role: sudoers
       tags:
         - sudoers
+
+- hosts: k3s
+  become: True
+  roles:
+    - role: base_role
+      tags:
+        - base_role
     - role: chrony
       tags:
         - chrony
