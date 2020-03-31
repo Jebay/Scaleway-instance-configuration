@@ -2,11 +2,15 @@
 
 - name: Destroy an instance
   scaleway_compute:
-    name: minikube-environment
+    name: "{{ vm.name }}"
     state: absent
-    image: 2e1353f3-02f7-441f-ab68-7218b874e341
+    image: "{{ vm.image_os }}"
     organization: "{{ scaleway_organization_id }}"
-    region: par1
-    commercial_type: DEV1-S
+    region: "{{ vm.region }}"
+    commercial_type: "{{ vm.commercial_type }}"
     wait: true
+  loop: "{{ vm_configuration }}"
+  loop_control:
+    loop_var: vm
+
 ...
