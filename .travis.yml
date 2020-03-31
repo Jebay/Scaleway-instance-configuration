@@ -2,9 +2,14 @@
 language: python
 python: 3.7.4
 
+# env:
+#   global:
+#     - ANSIBLE_CONFIG=/home/travis/build/Jebay/Instance-Configuration/ansible.cfg
+
 stages:
   - name: Check Syntax
   - name: Deploy
+  - name: Configure
 
 before_install:
 - sudo apt-get update -qq
@@ -14,16 +19,22 @@ before_install:
 
 install:
 - pip install ansible
-- printf '[defaults] roles_path = ../' > ansible.cfg
 
 jobs:
   include:
     - stage: Check Syntax
       script:
-      - ansible-playbook -v -i inventories/scaleway.yml 00_scaleway_destroy.yml --syntax-check
-      - ansible-playbook -v -i inventories/scaleway.yml 00_scaleway_setup.yml --syntax-check
-      - ansible-playbook -v -i inventories/scaleway.yml 10_configure.yml --syntax-check
+      - ansible-playbook -i inventories/scaleway.yml 00_scaleway_destroy.yml --syntax-check
+      - ansible-playbook -i inventories/scaleway.yml 00_scaleway_setup.yml --syntax-check
+      - ansible-playbook -i inventories/scaleway.yml 10_configure.yml --syntax-check
 
     - stage: Deploy
-      script: echo "toto"
+      script:
+      - pwd
+      - ansible-playbook -i inventories/scaleway.yml 00_scaleway_setup.yml
+    
+    - stage: Configure
+      script:
+      - ansible-playbook -i inventories/scaleway.yml 10_configure.yml
+
 ...
