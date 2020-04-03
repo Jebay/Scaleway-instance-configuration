@@ -14,11 +14,13 @@ vm_configuration:
     commercial_type: DEV1-S
     image_os: 2e1353f3-02f7-441f-ab68-7218b874e341
     public_ip: dynamic
-  # - name: test2
-  #   region: par1
-  #   commercial_type: DEV1-S
-  #   image_os: 2e1353f3-02f7-441f-ab68-7218b874e341
-  #   public_ip: dynamic
+    tag: k3s
+  - name: minecraft-srv
+    region: par1
+    commercial_type: DEV1-S
+    image_os: 2e1353f3-02f7-441f-ab68-7218b874e341
+    public_ip: dynamic
+    tag: minecraft
 
 
 ...

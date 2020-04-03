@@ -1,0 +1,30 @@
+---
+
+- hosts: minecraft
+  remote_user: root
+  become: True
+  roles:
+    - role: ssh_setup
+      tags:
+        - ssh_setup
+    - role: sudoers
+      tags:
+        - sudoers
+
+- hosts: minecraft
+  become: True
+  roles:
+    - role: base_role
+      tags:
+        - base_role
+    - role: chrony
+      tags:
+        - chrony
+    - role: fail2ban
+      tags:
+        - fail2ban
+    - role: minecraft
+      tags:
+        - minecraft
+
+...

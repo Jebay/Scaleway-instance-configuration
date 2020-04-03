@@ -1,0 +1,37 @@
+---
+
+- name: Ensure Minecraft server files is present.
+  get_url:
+    url: "{{ minecraft_file_url }}"
+    dest: /home/{{ remote_user }}/server.jar
+  register: download_result
+
+- name: First run server.
+  command: java -Xms1024M -Xmx2048M -jar server.jar nogui
+
+- name: Change mode of eulat.txt 
+  file:
+    path: /home/{{ remote_user }}/eula.txt
+    owner: {{ remote_user }}
+    group: {{ remote_user }}
+    mode: '644'
+
+- name: Accept EULA.
+  command: echo "eula=true" > eula.txt
+
+- name: Update server.properties.
+  copy:
+    src: server.properties
+    dest: /home/{{ remote_user }}/server.properties
+
+- name: Change mode of eulat.txt 
+  file:
+    path: /home/{{ remote_user }}/server.properties
+    owner: {{ remote_user }}
+    group: {{ remote_user }}
+    mode: '644'
+
+- name: Launch minecraft server.
+  command: screen -s minecraft java -Xms1024M -Xmx2048M -jar server.jar nogui
+
+...

@@ -1,0 +1,9 @@
+---
+
+- name: Prepare instance for minecraft.
+  include_tasks: prepare.yml
+
+- name: Download and Install minecraft.
+  include_tasks: minecraft.yml
+
+...

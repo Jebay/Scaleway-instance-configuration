@@ -9,7 +9,7 @@
     region: "{{ vm.region }}"
     commercial_type: "{{ vm.commercial_type }}"
     public_ip: "{{ vm.public_ip}}"
-    tags: ["k3s"]
+    tags: ["{{ vm.tag }}"]
     wait: true
   loop: "{{ vm_configuration }}"
   loop_control:
