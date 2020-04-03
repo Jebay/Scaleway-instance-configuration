@@ -2,6 +2,11 @@
 language: python
 python: 3.7.4
 
+stages:
+  - name: Check Syntax
+  - name: Deploy
+  - name: Configure
+
 before_install:
 - sudo apt-get update -qq
 - openssl aes-256-cbc -K $encrypted_1a9d6c8ad656_key -iv $encrypted_1a9d6c8ad656_iv -in .secret.enc -out .secret -d
@@ -10,10 +15,29 @@ before_install:
 
 install:
 - pip install ansible
-- printf '[defaults] roles_path = ../' > ansible.cfg
 
-script:
-- ansible-playbook -v -i inventories/scaleway.yml 00_scaleway_destroy.yml --syntax-check
-- ansible-playbook -v -i inventories/scaleway.yml 00_scaleway_setup.yml --syntax-check
-- ansible-playbook -v -i inventories/scaleway.yml 10_configure.yml --syntax-check
+jobs:
+  include:
+    - stage: Check Syntax
+      script:
+      - ansible-playbook -i inventories/scaleway.yml 00_scaleway_destroy.yml --syntax-check
+      - ansible-playbook -i inventories/scaleway.yml 00_scaleway_setup.yml --syntax-check
+      - ansible-playbook -i inventories/scaleway.yml 10_configure.yml --syntax-check
+
+    - stage: Deploy
+      script:
+      - pwd
+      - ansible-playbook -i inventories/scaleway.yml 00_scaleway_setup.yml
+    
+    - stage: Configure
+      before_script:
+      - openssl aes-256-cbc -K $encrypted_e6cc0fb2b8da_key -iv $encrypted_e6cc0fb2b8da_iv -in travis.enc -out travis -d
+      - chmod 600 travis
+      - eval "$(ssh-agent -s)" #start the ssh agent
+      - ssh-add travis
+      script:
+      - ansible-playbook -i inventories/scaleway.yml 10_configure.yml
+      after_script:
+      - rm travis
+
 ...
