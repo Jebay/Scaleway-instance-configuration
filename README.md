@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/Jebay/Instance-Configuration.svg?branch=master)](https://travis-ci.com/Jebay/Instance-Configuration)
+[![Build Status](https://travis-ci.com/Jebay/Scaleway-instance-configuration.svg?branch=master)](https://travis-ci.com/Jebay/Scaleway-instance-configuration)
 
 # Instance-Configuration
 Creation d'une instance sur Scaleway
